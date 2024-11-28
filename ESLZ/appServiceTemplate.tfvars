@@ -2,7 +2,7 @@ appServiceTemplate = {
   template = {
     appServiceEnvironment = {
       resource_group = "portal_app_service"
-      subnet         = "OZ2"
+      subnet         = "OZ"
 
       # Optional: Uncomment to set any of those values from the defaults
       # allow_new_private_endpoint_connections = false

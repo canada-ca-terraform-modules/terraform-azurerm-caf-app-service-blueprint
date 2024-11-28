@@ -6,8 +6,8 @@ variable "appServiceTemplate" {
 
 
 module "appServiceTemplate" {
-  # source = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-storage_account-static-website.git?ref=v1.0.0"
-  source = "/home/max/devops/modules/terraform-azurerm-caf-app-service-template"
+  source = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-storage_account-static-website.git?ref=v1.0.0"
+  # source = "/home/max/devops/modules/terraform-azurerm-caf-app-service-template"
   for_each = var.appServiceTemplate
 
   userDefinedString = each.key

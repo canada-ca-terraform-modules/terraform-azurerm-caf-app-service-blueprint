@@ -8,6 +8,11 @@ locals {
   // Load all tfvars files in the specified directory
   all_tfvars = fileset(local.tfvars_dir, "*.tfvars")
   tfvar_args = [for f in local.all_tfvars : "--var-file=${local.tfvars_dir}/${f}"]
+
+  all_json_tfvars = fileset(local.tfvars_dir, "*.tfvars.json")
+  tfvars_json_args = [for x in local.all_json_tfvars : "--var-file=${local.tfvars_dir}/${x}"]
+
+  merge_tfvars = concat(local.tfvar_args, local.tfvars_json_args)
 }
 
 # stage/mysql/terragrunt.hcl
@@ -30,7 +35,7 @@ terraform {
     env_vars = {
       ARM_SUBSCRIPTION_ID = local.config.subscription_id
     }
-    arguments = try(get_env("TERRAGRUNT_PIPELINE_RUN"), "false") == "false" ? local.tfvar_args : [] # Adding the dynamically generated tfvar files
+    arguments = try(get_env("TERRAGRUNT_PIPELINE_RUN"), "false") == "false" ? local.merge_tfvars : [] # Adding the dynamically generated tfvar files
   }
   extra_arguments "tfvars_files" {
     commands = [
@@ -44,7 +49,7 @@ terraform {
     env_vars = {
       ARM_SUBSCRIPTION_ID = local.config.subscription_id
     }
-    arguments = local.tfvar_args # Adding the dynamically generated tfvar files
+    arguments = local.merge_tfvars # Adding the dynamically generated tfvar files
   }
 }
 

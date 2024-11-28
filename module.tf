@@ -55,28 +55,13 @@ module "appServiceWindows" {
   tags = var.tags
 }
 
-# module "private_dns_zone" {
-#   source = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-private_dns_zone.git?ref=v1.0.2"
-#   # for_each = var.privateDNSzone
+module "private_dns_zone" {
+  source = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-private_dns_zone.git?ref=v1.0.2"
+  # for_each = var.privateDNSzone
 
-#   private_dns_zone = {resource_group = "DNS", core_link_enabled = true}
-#   name = "${module.AppServiceEnvironment.ase_name}.appserviceenvironment.net"
-#   resource_groups = var.resource_groups
-#   vnet_id = var.vnet.id
-#   tags = var.tags
-# }
-
-# module "Project-snet" {
-#   source          = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-subnet?ref=v3.1.1"
-#   virtual_network = var.vnet
-#   resource_group  = var.resource_groups.Network
-#   env             = var.env
-#   subnet = {
-#     userDefinedString                              = "ASE"
-#     address_prefixes                               = [cidrsubnet(var.vnet.address_space[0], 3, 7)]
-#     private_link_service_network_policies_enabled  = false
-#     private_endpoint_network_policies              = "Disabled"
-#     service_endpoints                              = ["Microsoft.Storage"]
-#     delegation                                     = {name = "acctestdelegation",service_delegation = {name = "Microsoft.Web/hostingEnvironments",actions = ["Microsoft.Network/virtualNetworks/subnets/action"]}}
-#   }
-# }
+  private_dns_zone = {resource_group = "DNS", core_link_enabled = true}
+  name = "${module.AppServiceEnvironment.ase_name}.appserviceenvironment.net"
+  resource_groups = var.resource_groups
+  vnet_id = var.vnet.id
+  tags = var.tags
+}
