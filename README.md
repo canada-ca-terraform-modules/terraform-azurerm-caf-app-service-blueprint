@@ -15,6 +15,7 @@ No providers.
 | <a name="module_AppServicePlan"></a> [AppServicePlan](#module\_AppServicePlan) | github.com/canada-ca-terraform-modules/terraform-caf-azurerm-app_service_plan.git | v1.0.3 |
 | <a name="module_appServiceLinux"></a> [appServiceLinux](#module\_appServiceLinux) | github.com/canada-ca-terraform-modules/terraform-azurerm-caf-app_service_linux.git | v1.0.3 |
 | <a name="module_appServiceWindows"></a> [appServiceWindows](#module\_appServiceWindows) | github.com/canada-ca-terraform-modules/terraform-azurerm-caf-app_service_windows.git | v1.0.2 |
+| <a name="module_private_dns_zone"></a> [private\_dns\_zone](#module\_private\_dns\_zone) | github.com/canada-ca-terraform-modules/terraform-azurerm-caf-private_dns_zone.git | v1.0.2 |
 
 ## Resources
 
