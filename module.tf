@@ -13,15 +13,16 @@ module "AppServiceEnvironment" {
 
 module "AppServicePlan" {
   source = "github.com/canada-ca-terraform-modules/terraform-caf-azurerm-app_service_plan.git?ref=v1.0.3"
+  for_each = var.appServiceTemplate.appServicePlan
 
-  userDefinedString = var.userDefinedString
+  userDefinedString = "${var.userDefinedString}-${each.key}"
   env = var.env
   group = var.group
   project = var.project
   resource_groups = var.resource_groups
   subnets = var.subnets
   ase = module.AppServiceEnvironment.ase_id
-  appServicePlan = merge(var.appServiceTemplate.appServicePlan, {ase = module.AppServiceEnvironment.ase_id})
+  appServicePlan = merge(each.value, {ase = module.AppServiceEnvironment.ase_id})
   tags = var.tags
 }
 
@@ -35,8 +36,8 @@ module "appServiceLinux" {
   project = var.project
   resource_groups = var.resource_groups
   subnets = var.subnets
-  appServiceLinux = merge(each.value, {asp = module.AppServicePlan.asp_id})
-  asp = module.AppServicePlan.asp_id
+  appServiceLinux = each.value
+  asp = local.asp_id
   tags = var.tags
 }
 
@@ -50,8 +51,8 @@ module "appServiceWindows" {
   project = var.project
   resource_groups = var.resource_groups
   subnets = var.subnets
-  appServiceWindows = merge(each.value, {asp = module.AppServicePlan.asp_id})
-  asp = module.AppServicePlan.asp_id
+  appServiceWindows = each.value
+  asp = local.asp_id
   tags = var.tags
 }
 

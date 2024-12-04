@@ -36,27 +36,40 @@ appServiceTemplate = {
     }
 
     appServicePlan = {
-      resource_group = "portal_app_service"
-      os_type        = "Linux"
-      sku_name       = "I1v2"
-      # Optional: Uncomment if you want to set any of these parameters to values other than the defaults below. 
-      # zone_balancing_enabled = false
-      # maximum_elastic_worker_count = null
-      # worker_count = 3
-      # per_site_scaling_enabled = false
+      linux = {
+        resource_group = "portal_app_service"
+        os_type        = "Linux"
+        sku_name       = "I1v2"
+        # Optional: Uncomment if you want to set any of these parameters to values other than the defaults below. 
+        # zone_balancing_enabled = false
+        # maximum_elastic_worker_count = null
+        # worker_count = 3
+        # per_site_scaling_enabled = false
+      }
+      # windows = {
+      #   resource_group = "portal_app_service"
+      #   os_type        = "Windows"
+      #   sku_name       = "I1v2"
+      #   # Optional: Uncomment if you want to set any of these parameters to values other than the defaults below. 
+      #   # zone_balancing_enabled = false
+      #   # maximum_elastic_worker_count = null
+      #   # worker_count = 3
+      #   # per_site_scaling_enabled = false
+      # }
     }
 
     appService = {
       test = {
-        resource_group                = "portal_app_service"
-        enabled                       = true
-        https_only                    = true
+        resource_group = "portal_app_service"
+        asp = "linux"
+        enabled        = true
+        https_only     = true
         # public_network_access_enabled = true
         # client_affinity_enabled                        = true
         # client_certificated_enabled                    = false
         # client_certificate_mode                        = "Required"
         # client_certificate_exclusion_paths             = ["/path1", "/path2"]
-        ftp_publish_basic_authentication_enabled       = false
+        ftp_publish_basic_authentication_enabled = false
         # key_vault_reference_identity_id                = "Your Key Vault Identity ID"
         # virtual_network_subnet_id                      = "Your VNet Subnet ID"
         # webdeploy_publish_basic_authentication_enabled = true 
