@@ -61,6 +61,9 @@ appServiceTemplate = {
         # Optional: Uncomment to set Custom domain names for the app service
         # custom_hostname_binding = ["example.com"]
 
+        # Optional: Uncomment and set any key value pairs
+        # app_setting = {}
+
         # Required: The block can be empty but must be present
         site_config = {
           always_on = true
@@ -104,9 +107,6 @@ appServiceTemplate = {
           #   python_version           = "3.9"
           #   ruby_version             = "2.7"
           # }
-
-          # Optional: Uncomment and set any key value pairs
-          # app_setting = {}
         }
       }
     }
