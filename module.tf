@@ -12,7 +12,7 @@ module "AppServiceEnvironment" {
 }
 
 module "AppServicePlan" {
-  source = "github.com/canada-ca-terraform-modules/terraform-caf-azurerm-app_service_plan.git?ref=v1.0.3"
+  source = "github.com/canada-ca-terraform-modules/terraform-caf-azurerm-app_service_plan.git?ref=v1.0.4"
   for_each = var.appServiceTemplate.appServicePlan
 
   userDefinedString = "${var.userDefinedString}-${each.key}"
